@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:personal_expenses/Provider/appdata.dart';
 import 'package:personal_expenses/Util/color.dart';
+import 'package:personal_expenses/Widget/chart.dart';
 import 'package:provider/provider.dart';
 
 import '../Widget/list_of_transaction.dart';
@@ -37,13 +38,22 @@ class _HomeScreenState extends State<HomeScreen> {
     return ChangeNotifierProvider(
       create: ((context) => AppData()),
       builder: (context, child) => Scaffold(
+        appBar: AppBar(
+          title: const Text('Personal Expenses'),
+        ),
         body: SafeArea(
           child: Column(
             children: [
-              Container(
-                height: 400,
-              ),
-              const ListOfTransaction()
+              Chart(
+                  recentTransactions:
+                      context.watch<AppData>().recentTransactions),
+              context.watch<AppData>().transaction == []
+                  ? const Center(
+                      child: Image(
+                          image: AssetImage(
+                              'assets/image/ic-congratulations.png')),
+                    )
+                  : const ListOfTransaction()
             ],
           ),
         ),

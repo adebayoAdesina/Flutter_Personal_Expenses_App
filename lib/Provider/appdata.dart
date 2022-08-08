@@ -19,6 +19,13 @@ class AppData extends ChangeNotifier {
     notifyListeners();
   }
 
+  List<Transaction> get recentTransactions {
+    return _transaction.where((element) {
+      return element.date!
+          .isAfter(DateTime.now().subtract(const Duration(days: 7)));
+    }).toList();
+  }
+
   UnmodifiableListView<Transaction> get transaction =>
       UnmodifiableListView(_transaction);
 }

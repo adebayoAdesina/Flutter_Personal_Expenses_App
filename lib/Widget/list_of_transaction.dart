@@ -11,20 +11,17 @@ class ListOfTransaction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-        physics: const ScrollPhysics(),
-        child: Column(
-          children: context
-              .watch<AppData>()
-              .transaction
-              .map(
-                (e) => TransactionCard(
-                  text: e.title!,
-                  price: e.amount!.toStringAsFixed(2),
-                  date: e.date!,
-                ),
-              )
-              .toList(),
-        ),);
+    return ListView.builder(
+      shrinkWrap: true,
+      itemCount: context.watch<AppData>().transaction.length,
+      itemBuilder: ((context, index) {
+        final e = context.watch<AppData>().transaction[index];
+        return TransactionCard(
+          text: e.title!,
+          price: e.amount!.toStringAsFixed(2),
+          date: e.date!,
+        );
+      }),
+    );
   }
 }
