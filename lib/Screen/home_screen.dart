@@ -104,15 +104,17 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<dynamic> showModalBottom(BuildContext context, contexts) {
     return showModalBottomSheet(
       context: context,
-      builder: (context) => Container(
-        color: kModalBgColor,
+      builder: (context) => SingleChildScrollView(
         child: Container(
-          padding: const EdgeInsets.all(30),
-          decoration: const BoxDecoration(
-              color: kWhiteColor,
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20), topRight: Radius.circular(20))),
-          child: SingleChildScrollView(
+          color: kModalBgColor,
+          child: Container(
+            height: MediaQuery.of(context).size.height * 0.7,
+            padding: const EdgeInsets.all(30),
+            decoration: const BoxDecoration(
+                color: kWhiteColor,
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20))),
             child: Column(
               children: [
                 const Text(
