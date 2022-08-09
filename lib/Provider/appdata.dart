@@ -7,13 +7,13 @@ import '../Model/transaction_model.dart';
 class AppData extends ChangeNotifier {
   final List<Transaction> _transaction = [];
 
-  void upDateTransaction(String title, double amount) {
+  void upDateTransaction(String title, double amount, DateTime date) {
     _transaction.add(
       Transaction(
         id: _transaction.length,
         title: title,
         amount: amount,
-        date: DateTime.now(),
+        date: date,
       ),
     );
     notifyListeners();
@@ -24,6 +24,11 @@ class AppData extends ChangeNotifier {
       return element.date!
           .isAfter(DateTime.now().subtract(const Duration(days: 7)));
     }).toList();
+  }
+
+  void deleteTransaction(Transaction transactionModel) {
+    _transaction.removeWhere((element) => element == transactionModel);
+    notifyListeners();
   }
 
   UnmodifiableListView<Transaction> get transaction =>

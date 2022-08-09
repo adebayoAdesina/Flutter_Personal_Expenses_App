@@ -15,8 +15,30 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Personal Expenses',
       theme: ThemeData(
-        primarySwatch: kPrimaryColor,
-        
+        colorScheme: const ColorScheme(
+            brightness: Brightness.light,
+            primary: kPrimaryColor,
+            onPrimary: kWhiteColor,
+            secondary: kSecondaryColor,
+            onSecondary: kWhiteColor,
+            error: Colors.red,
+            onError: Colors.red,
+            background: kWhiteColor,
+            onBackground: kWhiteColor,
+            surface: kPrimaryColor,
+            onSurface: kPrimaryColor),
+        inputDecorationTheme: const InputDecorationTheme(
+          labelStyle: TextStyle(color: kPrimaryColor),
+          focusedBorder:
+              OutlineInputBorder(borderSide: BorderSide(color: kPrimaryColor)),
+        ),
+        primaryColor: kPrimaryColor,
+        floatingActionButtonTheme: const FloatingActionButtonThemeData(
+          backgroundColor: kSecondaryColor,
+        ),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: kPrimaryColor,
+        ),
       ),
       home: const HomeScreen(),
     );
